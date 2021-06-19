@@ -1,11 +1,22 @@
 {
   "name": "planner",
   "version": "1.0.0",
-  "description": "",
+  "description": "lmao typing with vim will it even work??",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/erichu0/planner.git"
+  },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/erichu0/planner/issues"
+  },
+  "homepage": "https://github.com/erichu0/planner#readme",
+  "dependencies": {
+    "react": "^17.0.2"
+  }
 }
