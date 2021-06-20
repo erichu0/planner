@@ -1,12 +1,12 @@
 import React, { Component } from "react";
-import logo from './logo.svg';
 import './App.css';
+import ToDoList from './ToDoList/ToDoList'
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <p>react sukz</p>
+      <div>
+        <ToDoList className = "w1"/>
       </div>
     );
   }
