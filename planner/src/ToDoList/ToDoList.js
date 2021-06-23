@@ -13,8 +13,8 @@ const ToDoList = () => {
         <div>
             <h1 className="w1">To Do List</h1>
             <Input inputText={inputText} setInputText={setInputText} toDos={toDos} setToDos={setToDos} />
-            <TaskList inputText={inputText} toDos={toDos} setToDos={setToDos} setDoneToDos={setDoneToDos} doneToDos={doneToDos}/>
-            <Done doneToDos={doneToDos} setDoneToDos={setDoneToDos} toDos={toDos}/>
+            <TaskList inputText={inputText} toDos={toDos} setToDos={setToDos} setDoneToDos={setDoneToDos} doneToDos={doneToDos} />
+            <Done doneToDos={doneToDos} setDoneToDos={setDoneToDos} toDos={toDos} />
         </div>
     )
 }

@@ -8,7 +8,7 @@ const Input = ({ inputText, setInputText, toDos, setToDos }) => {
 
     const submitHandler = (e) => {
         e.preventDefault();
-        setToDos([...toDos, {text: inputText, id: Math.random()*10000}]);
+        setToDos([...toDos, { text: inputText, id: Math.random() * 10000 }]);
         setInputText("");
         console.log("Submitted");
     }

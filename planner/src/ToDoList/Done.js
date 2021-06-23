@@ -5,12 +5,12 @@ const Done = ({ doneToDos, setDoneToDos }) => {
     return (
         <div>
             <h3 className='w1'>Done</h3>
-            {doneToDos.map(doneToDo => 
-                <DoneTask 
-                taskText={doneToDo.text} 
-                doneToDo={doneToDo} 
-                setDoneToDos={setDoneToDos} 
-                doneToDos={doneToDos}
+            {doneToDos.map(doneToDo =>
+                <DoneTask
+                    taskText={doneToDo.text}
+                    doneToDo={doneToDo}
+                    setDoneToDos={setDoneToDos}
+                    doneToDos={doneToDos}
                 />)}
         </div>
     );
