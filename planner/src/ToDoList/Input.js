@@ -1,17 +1,14 @@
 import React from 'react';
 
-const Input = ({inputText, setInputText, toDos, setToDos}) => {
+const Input = ({ inputText, setInputText, toDos, setToDos }) => {
     const typeHandler = (e) => {
-        console.log(e.target.value);
+        //console.log(e.target.value);
         setInputText(e.target.value);
     }
 
     const submitHandler = (e) => {
         e.preventDefault();
-        console.log(inputText);
-        setToDos([
-            ...toDos, inputText
-        ]);
+        setToDos([...toDos, {text: inputText, id: Math.random()*10000}]);
         setInputText("");
         console.log("Submitted");
     }

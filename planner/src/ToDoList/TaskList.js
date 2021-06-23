@@ -1,16 +1,23 @@
 import React from 'react';
 import Task from './Task';
 
-const TaskList = ({ toDos }) => {
+const TaskList = ({ toDos, setToDos, setDoneToDos, doneToDos }) => {
+    
     return (
         <div>
             <h3 className='w1'>Tasks</h3>
 
-            <p className='w1'>be better</p>
-            {toDos.map((taskText) => (
-                <Task taskText={taskText} />
+            {toDos.map(task => (
+                <Task 
+                task={task} 
+                taskText={task.text} 
+                key={task.id} 
+                toDos={toDos} 
+                setToDos={setToDos} 
+                setDoneToDos={setDoneToDos} 
+                doneToDos={doneToDos} 
+                />
             ))}
-
         </div>
     )
 }
