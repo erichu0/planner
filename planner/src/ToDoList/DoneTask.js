@@ -5,9 +5,9 @@ const DoneTask = ({ taskText, doneToDo, setDoneToDos, doneToDos }) => {
         setDoneToDos(doneToDos.filter(toDo => doneToDo.id !== toDo.id))
     }
     return (
-        <div>
+        <div className='task'>
             <p className='w1 inline strikethrough'>{taskText}</p>
-            <button onClick={deleteHandler}>Delete</button>
+            <button onClick={deleteHandler} className='w1'>Delete</button>
         </div>
     )
 }

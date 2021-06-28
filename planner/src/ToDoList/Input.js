@@ -2,7 +2,6 @@ import React from 'react';
 
 const Input = ({ inputText, setInputText, toDos, setToDos }) => {
     const typeHandler = (e) => {
-        //console.log(e.target.value);
         setInputText(e.target.value);
     }
 
@@ -14,10 +13,10 @@ const Input = ({ inputText, setInputText, toDos, setToDos }) => {
     }
 
     return (
-        <div>
+        <div className='section'>
             <h3 className='w1'>Input</h3>
-            <form>
-                <input onChange={typeHandler} value={inputText} type='text' className='w1'></input>
+            <form className='input-form task'>
+                <input onChange={typeHandler} value={inputText} type='text' className='w1 type-field'></input>
                 <button onClick={submitHandler} type='submit' className='w1'>Add</button>
             </form>
         </div>

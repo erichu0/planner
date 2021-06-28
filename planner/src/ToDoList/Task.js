@@ -12,10 +12,12 @@ const Task = ({ task, taskText, toDos, setToDos, doneToDos, setDoneToDos }) => {
     }
 
     return (
-        <div>
+        <div className='task'>
             <p className='w1 inline'>{taskText}</p>
-            <button onClick={completeHandler}>Done</button>
-            <button onClick={removeHandler}>Remove</button>
+            <div className='task-button-div'>
+                <button onClick={completeHandler} className='w1'>Done</button>
+                <button onClick={removeHandler} className='w1'>Remove</button>
+            </div>
         </div>
     );
 }

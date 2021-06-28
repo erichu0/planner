@@ -3,7 +3,7 @@ import DoneTask from './DoneTask';
 
 const Done = ({ doneToDos, setDoneToDos }) => {
     return (
-        <div>
+        <div className='section'>
             <h3 className='w1'>Done</h3>
             {doneToDos.map(doneToDo =>
                 <DoneTask

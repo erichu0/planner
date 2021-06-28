@@ -4,7 +4,7 @@ import Task from './Task';
 const TaskList = ({ toDos, setToDos, setDoneToDos, doneToDos }) => {
 
     return (
-        <div>
+        <div className='section'>
             <h3 className='w1'>Tasks</h3>
 
             {toDos.map(task => (
