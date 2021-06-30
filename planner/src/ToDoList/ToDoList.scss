@@ -2,20 +2,13 @@
     font-family: "Inter";
 }
 
-.title {
-    font-weight: 900;
-}
-
 .to-do-list {
     background: #ececec;
+    padding: 1rem;
 }
 
 .section {
-    margin-top: 1rem;
-}
-
-.input-form {
-    margin: 10px 0px;
+    margin-bottom: 1rem;
 }
 
 .type-field {
@@ -52,7 +45,7 @@ input {
     width: fit-content;
 }
 
-button {
+.todo-button {
     border-radius: 20px;
     border: 0;
     background: #ececec;

@@ -1,3 +1,13 @@
+* {
+    margin: 0;
+}
+
+body {
+    /* background-color: #ececec; */
+    width: 60%;
+    margin: 3.5em 20%;
+}
+
 .inline {
     display: inline;
 }

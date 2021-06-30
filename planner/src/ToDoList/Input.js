@@ -13,11 +13,11 @@ const Input = ({ inputText, setInputText, toDos, setToDos }) => {
     }
 
     return (
-        <div className='section'>
-            <h3 className='w1'>Input</h3>
+        <div className='section w1'>
+            <h3>Input</h3>
             <form className='input-form task'>
-                <input onChange={typeHandler} value={inputText} type='text' className='w1 type-field'></input>
-                <button onClick={submitHandler} type='submit' className='w1'>Add</button>
+                <input onChange={typeHandler} value={inputText} type='text' className='type-field'></input>
+                <button onClick={submitHandler} type='submit' className=' todo-button w1'>Add</button>
             </form>
         </div>
     )

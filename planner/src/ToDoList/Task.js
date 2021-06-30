@@ -15,8 +15,8 @@ const Task = ({ task, taskText, toDos, setToDos, doneToDos, setDoneToDos }) => {
         <div className='task'>
             <p className='w1 inline task-text'>{taskText}</p>
             <div className='task-button-div'>
-                <button onClick={completeHandler} className='w1'>Done</button>
-                <button onClick={removeHandler} className='w1'>Remove</button>
+                <button onClick={completeHandler} className='w1 todo-button'>Done</button>
+                <button onClick={removeHandler} className='w1 todo-button'>Remove</button>
             </div>
         </div>
     );

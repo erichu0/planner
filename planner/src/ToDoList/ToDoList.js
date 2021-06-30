@@ -42,7 +42,7 @@ const ToDoList = () => {
 
     return (
         <div className='to-do-list'>
-            <h1 className="w1 title"><strong>To Do List</strong></h1>
+            <h1 className="w1 title text-2xl"><strong>To Do List</strong></h1>
             <Input
                 inputText={inputText}
                 setInputText={setInputText}
