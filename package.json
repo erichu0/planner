@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/erichu0/planner#readme",
   "dependencies": {
+    "firebase": "^8.6.8",
     "react": "^17.0.2"
   }
 }

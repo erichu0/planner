@@ -7,6 +7,7 @@ const Done = ({ doneToDos, setDoneToDos }) => {
             <h3 className='w1'>Done</h3>
             {doneToDos.map(doneToDo =>
                 <DoneTask
+                    key={doneToDo.id} 
                     taskText={doneToDo.text}
                     doneToDo={doneToDo}
                     setDoneToDos={setDoneToDos}

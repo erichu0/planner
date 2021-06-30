@@ -2,6 +2,10 @@
   font-family: "Inter";
 }
 
+.title {
+  font-weight: 900;
+}
+
 .to-do-list {
   background: #ececec;
 }
@@ -37,6 +41,10 @@
   margin-top: 10px;
 }
 
+.task-text {
+  padding-left: 10px;
+}
+
 input {
   width: -webkit-fit-content;
   width: -moz-fit-content;
@@ -54,9 +62,8 @@ button {
 button:active {
   box-shadow: 0px 0px 0px, 0px 0px 0px;
   background-color: pink;
-  cursor: -webkit-grabbing;
-  cursor: grabbing;
 }
 button:hover {
   box-shadow: 8px 8px 16px #bebebe, -8px -8px 16px #ffffff;
+  cursor: pointer;
 }/*# sourceMappingURL=ToDoList.css.map */

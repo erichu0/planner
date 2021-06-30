@@ -6,7 +6,7 @@ const DoneTask = ({ taskText, doneToDo, setDoneToDos, doneToDos }) => {
     }
     return (
         <div className='task'>
-            <p className='w1 inline strikethrough'>{taskText}</p>
+            <p className='w1 inline strikethrough task-text'>{taskText}</p>
             <button onClick={deleteHandler} className='w1'>Delete</button>
         </div>
     )

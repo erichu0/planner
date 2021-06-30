@@ -13,7 +13,7 @@ const Task = ({ task, taskText, toDos, setToDos, doneToDos, setDoneToDos }) => {
 
     return (
         <div className='task'>
-            <p className='w1 inline'>{taskText}</p>
+            <p className='w1 inline task-text'>{taskText}</p>
             <div className='task-button-div'>
                 <button onClick={completeHandler} className='w1'>Done</button>
                 <button onClick={removeHandler} className='w1'>Remove</button>
