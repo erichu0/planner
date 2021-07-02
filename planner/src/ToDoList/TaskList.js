@@ -6,7 +6,6 @@ const TaskList = ({ toDos, setToDos, setDoneToDos, doneToDos }) => {
     return (
         <div className='section'>
             <h3 className='w1'>Tasks</h3>
-
             {toDos.map(task => (
                 <Task
                     task={task}

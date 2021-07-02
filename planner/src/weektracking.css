@@ -3,5 +3,5 @@
 } 
 
 .w2 {
-    color: rgb(255, 164, 103);
+    @apply text-yellow-500;
 }

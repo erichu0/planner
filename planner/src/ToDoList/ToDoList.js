@@ -42,22 +42,29 @@ const ToDoList = () => {
 
     return (
         <div className='to-do-list'>
-            <h1 className="w1 title text-2xl"><strong>To Do List</strong></h1>
-            <Input
-                inputText={inputText}
-                setInputText={setInputText}
-                toDos={toDos}
-                setToDos={setToDos} />
-            <TaskList
-                inputText={inputText}
-                toDos={toDos}
-                setToDos={setToDos}
-                setDoneToDos={setDoneToDos}
-                doneToDos={doneToDos} />
-            <Done
-                doneToDos={doneToDos}
-                setDoneToDos={setDoneToDos}
-                toDos={toDos} />
+            <h1 className="w1 title">To Do List</h1>
+            <div className="input">
+                <Input
+                    inputText={inputText}
+                    setInputText={setInputText}
+                    toDos={toDos}
+                    setToDos={setToDos} />
+            </div>
+            <div className="task-list">
+                <TaskList
+                    inputText={inputText}
+                    toDos={toDos}
+                    setToDos={setToDos}
+                    setDoneToDos={setDoneToDos}
+                    doneToDos={doneToDos} />
+            </div>
+            <div className="done">
+                <Done
+                    doneToDos={doneToDos}
+                    setDoneToDos={setDoneToDos}
+                    toDos={toDos} />
+            </div>
+            
         </div>
     )
 }

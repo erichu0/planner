@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import './App.css';
-import Signup from './Signup/Signup'
+import Signup from './Auth/Signup'
 import ToDoList from './ToDoList/ToDoList'
 
 
 class App extends Component {
   render() {
     return (
-      <div>
+      <div className='flex flex-col justify-items-center'>
         <Signup />
         <ToDoList className="w1" />
       </div>

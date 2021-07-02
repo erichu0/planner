@@ -3,9 +3,7 @@
 }
 
 body {
-    /* background-color: #ececec; */
-    width: 60%;
-    margin: 3.5em 20%;
+  background-color: black;
 }
 
 .inline {
