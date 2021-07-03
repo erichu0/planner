@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+
 import './App.css';
 import Signup from './Auth/Signup'
 import Login from './Auth/Login'
@@ -11,7 +13,7 @@ class App extends Component {
       <div className='flex flex-col justify-items-center'>
         <Signup />
         <Login />
-        <ToDoList className="w1" />
+        <ToDoList />
       </div>
     );
   }

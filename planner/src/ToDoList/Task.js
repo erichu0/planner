@@ -2,10 +2,12 @@ import React from 'react';
 
 const Task = ({ task, taskText, toDos, setToDos, doneToDos, setDoneToDos }) => {
     const removeHandler = (e) => {
+        e.preventDefault();
         setToDos(toDos.filter(toDo => toDo.id !== task.id));
     }
 
     const completeHandler = (e) => {
+        e.preventDefault();
         console.log(task)
         setToDos(toDos.filter(toDo => toDo.id !== task.id));
         setDoneToDos([...doneToDos, task]);

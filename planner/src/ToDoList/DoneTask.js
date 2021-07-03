@@ -2,6 +2,7 @@ import React from 'react';
 
 const DoneTask = ({ taskText, doneToDo, setDoneToDos, doneToDos }) => {
     const deleteHandler = (e) => {
+        e.preventDefault();
         setDoneToDos(doneToDos.filter(toDo => doneToDo.id !== toDo.id))
     }
     return (
