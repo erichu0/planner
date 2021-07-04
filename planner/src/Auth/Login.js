@@ -1,6 +1,5 @@
-import React, { useContext } from 'react'
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
-import ToDoList from '../ToDoList/ToDoList';
+import React from 'react'
+import { BrowserRouter as Link } from 'react-router-dom'
 
 const Login = () => {
     const defaultHandler = (e) => {
