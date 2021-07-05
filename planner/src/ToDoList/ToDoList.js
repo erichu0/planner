@@ -44,7 +44,6 @@ const ToDoList = () => {
 
     return (
         <div className='to-do-list'>
-            <Link to='/' className='w2'>Home</Link>
             <h1 className="w1 title">To Do List</h1>
             <div className="input">
                 <Input
