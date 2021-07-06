@@ -1,0 +1,12 @@
+.w1 { /*6/19-6/26*/
+    color: rgb(255, 103, 103);
+} 
+
+.w2 {
+    @apply text-yellow-500;
+}
+
+.w3 {
+    /* color: rgb(219, 199, 7); */
+    @apply text-yellow-300;
+}
