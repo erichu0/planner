@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Link } from 'react-router-dom'
 
 const Login = () => {
     return (
-        <div className='signup w2 mb-8 bg-white p-4'>
+        <div className='signup w3 mb-8 bg-white p-4'>
             <h1 className='font-bold text-2xl mb-4'>Log In Page</h1>
             <form>
                 <h2>Username</h2>

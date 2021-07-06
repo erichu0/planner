@@ -5,3 +5,8 @@
 .w2 {
     @apply text-yellow-500;
 }
+
+.w3 {
+    /* color: rgb(219, 199, 7); */
+    @apply text-yellow-300;
+}

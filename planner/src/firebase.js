@@ -1,5 +1,7 @@
-import firebase from 'firebase/app'
-import 'firebase/auth'
+import firebase from '@firebase/app'
+import '@firebase/database'
+import '@firebase/auth'
+import React from 'react'
 
 // Your web app's Firebase configuration
 var firebaseConfig = {
@@ -13,12 +15,16 @@ var firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = firebase.initializeApp(firebaseConfig);
-
-console.log(firebaseConfig.apiKey)
+const firebaseApp = firebase.initializeApp(firebaseConfig);
 
 // Authentication Instance
-const auth = app.auth();
+const auth = firebaseApp.auth();
 
-export {auth};
-export default app;
+// Database Instance
+var database = firebase.database();
+
+// React Context
+const DatabaseContext = React.createContext()
+
+export {auth, database, DatabaseContext};
+export default firebaseApp;

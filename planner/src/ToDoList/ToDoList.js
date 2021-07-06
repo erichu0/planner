@@ -1,17 +1,43 @@
-import React, { useState, useEffect } from "react";
-// eslint-disable-next-line
-import { BrowserRouter as Router, Link } from 'react-router-dom'
+import React, { useState, useEffect, useContext } from "react";
 
 import './ToDoList.css';
 
 import Input from "./Input";
 import TaskList from "./TaskList";
 import Done from "./Done";
+import { DatabaseContext } from "../firebase";
 
 const ToDoList = () => {
+    
+
     const [inputText, setInputText] = useState("");
     const [toDos, setToDos] = useState([]);
     const [doneToDos, setDoneToDos] = useState([]);
+
+    const database = useContext(DatabaseContext);
+    console.log(database);
+
+    var toDoData, doneToDoData;
+
+    const uploadFirebase = () => {
+        toDos.forEach(todo => {
+            toDoData = {
+                name: todo.text,
+                id: todo.id
+            }
+        })
+        var ref = database.ref('toDos');
+        ref.push(toDoData);
+
+        doneToDos.forEach(todo => {
+            doneToDoData = {
+                name: todo.text,
+                id: todo.id
+            }
+        })
+        var ref = database.ref('doneToDos');
+        ref.push(doneToDoData);
+    }
 
     const saveLocalTodos = () => {
         localStorage.setItem('toDos', JSON.stringify(toDos));
@@ -32,15 +58,15 @@ const ToDoList = () => {
     }
 
     useEffect(() => {
-        getLocalTodos()
+        getLocalTodos();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     useEffect(() => {
-        saveLocalTodos()
+        saveLocalTodos();
+        uploadFirebase();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [toDos, doneToDos])
-
 
     return (
         <div className='to-do-list'>
