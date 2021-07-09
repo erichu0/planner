@@ -8,8 +8,6 @@ import Done from "./Done";
 import { DatabaseContext } from "../firebase";
 
 const ToDoList = () => {
-    
-
     const [inputText, setInputText] = useState("");
     const [toDos, setToDos] = useState([]);
     const [doneToDos, setDoneToDos] = useState([]);
@@ -17,26 +15,25 @@ const ToDoList = () => {
     const database = useContext(DatabaseContext);
     console.log(database);
 
-    var toDoData, doneToDoData, ref;
+    var toDoData, doneToDoData, ref, todoid, donetodoid;
 
     const uploadFirebase = () => {
+        ref = database.ref('toDos');
         toDos.forEach(todo => {
             toDoData = {
                 name: todo.text,
-                id: todo.id
             }
+            todo.id = ref.push(toDoData);
+            console.log(todo.id);
         })
-        ref = database.ref('toDos');
-        ref.push(toDoData);
 
+        ref = database.ref('doneToDos');
         doneToDos.forEach(todo => {
             doneToDoData = {
                 name: todo.text,
-                id: todo.id
             }
+            todo.id = ref.push(doneToDoData);
         })
-        ref = database.ref('doneToDos');
-        ref.push(doneToDoData);
     }
 
     const saveLocalTodos = () => {
