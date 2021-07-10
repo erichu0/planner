@@ -17,7 +17,7 @@ const Input = ({ inputText, setInputText, toDos, setToDos }) => {
             <h3>Input</h3>
             <form className='input-form task'>
                 <input onChange={typeHandler} value={inputText} type='text' className='type-field'></input>
-                <button onClick={submitHandler} type='submit' className=' todo-button w1'>Add</button>
+                <button onClick={submitHandler} type='submit' className='todo-button w1'>Add</button>
             </form>
         </div>
     )
