@@ -14,26 +14,26 @@ const ToDoList = () => {
 
     const database = useContext(DatabaseContext);
     console.log(database);
+    console.log(toDos[toDos.length - 1]);
 
-    var toDoData, doneToDoData, ref, todoid, donetodoid;
+    var toDoData, doneToDoData;
 
-    const uploadFirebase = () => {
-        ref = database.ref('toDos');
-        toDos.forEach(todo => {
+    async function uploadFirebase() {
+        try {
+            await toDos;
             toDoData = {
-                name: todo.text,
+                name: toDos[toDos.length - 1].text,
             }
-            todo.id = ref.push(toDoData);
-            console.log(todo.id);
-        })
+            toDos[toDos.length - 1].id = database.ref('toDos').push(toDoData);
 
-        ref = database.ref('doneToDos');
-        doneToDos.forEach(todo => {
             doneToDoData = {
-                name: todo.text,
+                name: doneToDos[doneToDos.length - 1].text,
             }
-            todo.id = ref.push(doneToDoData);
-        })
+            doneToDos[doneToDos.length - 1].id = database.ref('doneToDos').push(doneToDoData);
+        } catch (e) {
+            console.log("that failed", e);
+        }
+
     }
 
     const saveLocalTodos = () => {
@@ -89,7 +89,7 @@ const ToDoList = () => {
                     setDoneToDos={setDoneToDos}
                     toDos={toDos} />
             </div>
-            
+
         </div>
     )
 }
