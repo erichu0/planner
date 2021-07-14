@@ -21,15 +21,13 @@ const ToDoList = () => {
 
     var toDoData, doneToDoData;
 
-    function toDosChecker() {
-        return new Promise((resolve, reject) => {
-            if (toDos) { //if todos is defined
-                resolve();
-            } else if (0 == 1) {
-                reject();
-            }
-        });
-    }
+    // function toDosChecker() {
+    //     return new Promise((resolve, reject) => {
+    //         if (toDos) { //if todos is defined
+    //             resolve();
+    //         }
+    //     });
+    // }
 
     // function pushFirebase() {
     //     toDosChecker()
