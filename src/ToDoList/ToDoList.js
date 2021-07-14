@@ -11,30 +11,39 @@ const ToDoList = () => {
     const [inputText, setInputText] = useState("");
     const [toDos, setToDos] = useState([]);
     const [doneToDos, setDoneToDos] = useState([]);
+    const [deletedCount, setDeletedCount] = useState(0);
 
     const database = useContext(DatabaseContext);
-    console.log(database);
-    console.log(toDos[toDos.length - 1]);
 
     var toDoData, doneToDoData;
 
-    async function uploadFirebase() {
+    async function pushFirebase() {
         try {
             await toDos;
             toDoData = {
                 name: toDos[toDos.length - 1].text,
             }
-            toDos[toDos.length - 1].id = database.ref('toDos').push(toDoData);
+            toDos[toDos.length - 1].id = database.ref('toDos').push(toDoData); //set the ref, task id and push at the same time
 
             doneToDoData = {
                 name: doneToDos[doneToDos.length - 1].text,
             }
             doneToDos[doneToDos.length - 1].id = database.ref('doneToDos').push(doneToDoData);
         } catch (e) {
-            console.log("that failed", e);
         }
+    }
+
+    function setFirebase() {
+
+        toDoData = toDos;
+        toDos[toDos.length - 1].id = database.ref('toDos').push(toDoData);
+
+        doneToDoData = doneToDos;
+        doneToDos[doneToDos.length - 1].id = database.ref('doneToDos').push(doneToDoData);
 
     }
+
+
 
     const saveLocalTodos = () => {
         localStorage.setItem('toDos', JSON.stringify(toDos));
@@ -61,9 +70,13 @@ const ToDoList = () => {
 
     useEffect(() => {
         saveLocalTodos();
-        uploadFirebase();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+        pushFirebase();
     }, [toDos, doneToDos])
+
+    useEffect(() => {
+        setFirebase();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [deletedCount, doneToDos])
 
     return (
         <div className='to-do-list'>
@@ -81,13 +94,17 @@ const ToDoList = () => {
                     toDos={toDos}
                     setToDos={setToDos}
                     setDoneToDos={setDoneToDos}
-                    doneToDos={doneToDos} />
+                    doneToDos={doneToDos}
+                    deletedCount={deletedCount}
+                    setDeletedCount={setDeletedCount} />
             </div>
             <div className="done">
                 <Done
                     doneToDos={doneToDos}
                     setDoneToDos={setDoneToDos}
-                    toDos={toDos} />
+                    toDos={toDos}
+                    deletedCount={deletedCount}
+                    setDeletedCount={setDeletedCount} />
             </div>
 
         </div>

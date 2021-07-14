@@ -1,7 +1,7 @@
 import React from 'react';
 import Task from './Task';
 
-const TaskList = ({ toDos, setToDos, setDoneToDos, doneToDos }) => {
+const TaskList = ({ toDos, setToDos, setDoneToDos, doneToDos, deletedCount, setDeletedCount }) => {
     return (
         <div className='section'>
             <h3 className='w1'>Tasks</h3>
@@ -14,6 +14,8 @@ const TaskList = ({ toDos, setToDos, setDoneToDos, doneToDos }) => {
                     setToDos={setToDos}
                     setDoneToDos={setDoneToDos}
                     doneToDos={doneToDos}
+                    deletedCount={deletedCount}
+                    setDeletedCount={setDeletedCount}
                 />
             ))}
         </div>

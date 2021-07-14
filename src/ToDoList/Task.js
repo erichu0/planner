@@ -1,9 +1,10 @@
 import React from 'react';
 
-const Task = ({ task, taskText, toDos, setToDos, doneToDos, setDoneToDos }) => {
+const Task = ({ task, taskText, toDos, setToDos, doneToDos, setDoneToDos, deletedCount, setDeletedCount }) => {
     const removeHandler = (e) => {
         e.preventDefault();
         setToDos(toDos.filter(toDo => toDo.id !== task.id));
+        setDeletedCount(deletedCount + 1);
     }
 
     const completeHandler = (e) => {
