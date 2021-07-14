@@ -7,6 +7,10 @@ import TaskList from "./TaskList";
 import Done from "./Done";
 import { DatabaseContext } from "../firebase";
 
+const doesItExist = (variable) => {
+
+}
+
 const ToDoList = () => {
     const [inputText, setInputText] = useState("");
     const [toDos, setToDos] = useState([]);
@@ -17,30 +21,44 @@ const ToDoList = () => {
 
     var toDoData, doneToDoData;
 
-    async function pushFirebase() {
-        try {
-            await toDos;
-            toDoData = {
-                name: toDos[toDos.length - 1].text,
+    function toDosChecker() {
+        return new Promise((resolve, reject) => {
+            if (toDos) { //if todos is defined
+                resolve();
+            } else if (0 == 1) {
+                reject();
             }
-            toDos[toDos.length - 1].id = database.ref('toDos').push(toDoData); //set the ref, task id and push at the same time
-
-            doneToDoData = {
-                name: doneToDos[doneToDos.length - 1].text,
-            }
-            doneToDos[doneToDos.length - 1].id = database.ref('doneToDos').push(doneToDoData);
-        } catch (e) {
-        }
+        });
     }
 
-    function setFirebase() {
+    // function pushFirebase() {
+    //     toDosChecker()
+    //         .then(() => {
+    //             console.log(toDos, 'bruh');
+    //             if (toDos.length > 0) {
+    //                 toDoData = {
+    //                     name: toDos[toDos.length - 1].text,
+    //                 }
+    //                 /*toDos[toDos.length - 1].id = */database.ref('toDos').push(toDoData); //set the ref, task id and push at the same time
 
+    //                 if (doneToDos.length > 0) {
+    //                     doneToDoData = {
+    //                         name: doneToDos[doneToDos.length - 1].text,
+    //                     }
+    //                     /*doneToDos[doneToDos.length - 1].id = */database.ref('doneToDos').push(doneToDoData);
+    //                 }
+    //             }
+    //         })
+    // }
+
+    function setFirebase() {
         toDoData = toDos;
-        toDos[toDos.length - 1].id = database.ref('toDos').push(toDoData);
+        console.log("tododata", toDoData)
+        database.ref('toDos').set(toDoData);
 
         doneToDoData = doneToDos;
-        doneToDos[doneToDos.length - 1].id = database.ref('doneToDos').push(doneToDoData);
-
+        console.log("donetododata", doneToDoData)
+        database.ref('doneToDos').set(doneToDoData);
     }
 
 
@@ -68,15 +86,16 @@ const ToDoList = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
-    useEffect(() => {
-        saveLocalTodos();
-        pushFirebase();
-    }, [toDos, doneToDos])
+    // useEffect(() => {
+    //     saveLocalTodos();
+    //     pushFirebase();
+    // }, [, doneToDos])
 
     useEffect(() => {
+        saveLocalTodos();
         setFirebase();
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [deletedCount, doneToDos])
+    }, [deletedCount, toDos, doneToDos])
 
     return (
         <div className='to-do-list'>
