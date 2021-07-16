@@ -51,15 +51,36 @@ const ToDoList = () => {
 
     function setFirebase() {
         toDoData = toDos;
-        console.log("tododata", toDoData)
+        //console.log("tododata", toDoData)
         database.ref('toDos').set(toDoData);
 
         doneToDoData = doneToDos;
-        console.log("donetododata", doneToDoData)
+        //console.log("donetododata", doneToDoData)
         database.ref('doneToDos').set(doneToDoData);
     }
 
+    function getFirebase() {
+        console.log(database.ref('toDos').get().then((snapshot) => {
+            if (snapshot.exists()) {
+                console.log(snapshot.val());
+            } else {
+                console.log("No data available");
+            }
+        }).catch((error) => {
+            console.error(error);
+        }))
 
+
+        console.log(database.ref('doneToDos').get().then((snapshot) => {
+            if (snapshot.exists()) {
+                console.log(snapshot.val());
+            } else {
+                console.log("No data available");
+            }
+        }).catch((error) => {
+            console.error(error);
+        }))
+    }
 
     const saveLocalTodos = () => {
         localStorage.setItem('toDos', JSON.stringify(toDos));
@@ -81,6 +102,7 @@ const ToDoList = () => {
 
     useEffect(() => {
         getLocalTodos();
+        getFirebase();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 

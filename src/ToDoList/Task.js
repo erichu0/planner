@@ -9,7 +9,6 @@ const Task = ({ task, taskText, toDos, setToDos, doneToDos, setDoneToDos, delete
 
     const completeHandler = (e) => {
         e.preventDefault();
-        console.log(task)
         setToDos(toDos.filter(toDo => toDo.id !== task.id));
         setDoneToDos([...doneToDos, task]);
     }
