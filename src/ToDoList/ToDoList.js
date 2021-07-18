@@ -7,10 +7,6 @@ import TaskList from "./TaskList";
 import Done from "./Done";
 import { DatabaseContext } from "../firebase";
 
-const doesItExist = (variable) => {
-
-}
-
 const ToDoList = () => {
     const [inputText, setInputText] = useState("");
     const [toDos, setToDos] = useState([]);
@@ -60,26 +56,50 @@ const ToDoList = () => {
     }
 
     function getFirebase() {
-        console.log(database.ref('toDos').get().then((snapshot) => {
+        database.ref('toDos').get().then((snapshot) => {
+            console.log(snapshot.val());
             if (snapshot.exists()) {
-                console.log(snapshot.val());
+                
+                setToDos(snapshot.val());
             } else {
                 console.log("No data available");
             }
         }).catch((error) => {
             console.error(error);
-        }))
+        });
 
 
-        console.log(database.ref('doneToDos').get().then((snapshot) => {
-            if (snapshot.exists()) {
-                console.log(snapshot.val());
-            } else {
-                console.log("No data available");
-            }
-        }).catch((error) => {
-            console.error(error);
-        }))
+        // console.log(database.ref('doneToDos').get().then((snapshot) => {
+        //     if (snapshot.exists()) {
+        //         console.log(snapshot.val());
+        //     } else {
+        //         console.log("No data available");
+        //     }
+        // }).catch((error) => {
+        //     console.error(error);
+        // }));
+
+        // database.ref('toDos').get().then((snapshot) => {
+        //     if (snapshot.exists()) {
+        //         console.log(snapshot.val());
+        //         setToDos(snapshot.val());
+        //     } else {
+        //         console.log("No data available");
+        //     }
+        // }).catch((error) => {
+        //     console.error(error);
+        // });
+
+        // database.ref('doneToDos').get().then((snapshot) => {
+        //     if (snapshot.exists()) {
+        //         console.log(snapshot.val());
+        //         setDoneToDos(snapshot.val());
+        //     } else {
+        //         console.log("No data available");
+        //     }
+        // }).catch((error) => {
+        //     console.error(error);
+        // });
     }
 
     const saveLocalTodos = () => {
@@ -92,16 +112,18 @@ const ToDoList = () => {
             localStorage.setItem('toDos', JSON.stringify([]));
         } else {
             setToDos(JSON.parse(localStorage.getItem('toDos', JSON.stringify(toDos))));
+            //setToDos(["waiting for firebase", "still waiting"]);
         };
         if (localStorage.getItem('doneToDos') === null) {
             localStorage.setItem('doneToDos', JSON.stringify([]));
         } else {
             setDoneToDos(JSON.parse(localStorage.getItem('doneToDos', JSON.stringify(doneToDos))));
+            //setDoneToDos(["waiting for firebase", "still waiting"]);
         };
     }
 
     useEffect(() => {
-        getLocalTodos();
+        //getLocalTodos();
         getFirebase();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
@@ -112,8 +134,8 @@ const ToDoList = () => {
     // }, [, doneToDos])
 
     useEffect(() => {
-        saveLocalTodos();
-        setFirebase();
+        //saveLocalTodos();
+        //setFirebase();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [deletedCount, toDos, doneToDos])
 
