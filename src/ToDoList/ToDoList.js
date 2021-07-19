@@ -46,6 +46,7 @@ const ToDoList = () => {
     // }
 
     function setFirebase() {
+        console.log('setting');
         toDoData = toDos;
         //console.log("tododata", toDoData)
         database.ref('toDos').set(toDoData);
@@ -59,7 +60,6 @@ const ToDoList = () => {
         database.ref('toDos').get().then((snapshot) => {
             console.log(snapshot.val());
             if (snapshot.exists()) {
-                
                 setToDos(snapshot.val());
             } else {
                 console.log("No data available");
@@ -68,38 +68,6 @@ const ToDoList = () => {
             console.error(error);
         });
 
-
-        // console.log(database.ref('doneToDos').get().then((snapshot) => {
-        //     if (snapshot.exists()) {
-        //         console.log(snapshot.val());
-        //     } else {
-        //         console.log("No data available");
-        //     }
-        // }).catch((error) => {
-        //     console.error(error);
-        // }));
-
-        // database.ref('toDos').get().then((snapshot) => {
-        //     if (snapshot.exists()) {
-        //         console.log(snapshot.val());
-        //         setToDos(snapshot.val());
-        //     } else {
-        //         console.log("No data available");
-        //     }
-        // }).catch((error) => {
-        //     console.error(error);
-        // });
-
-        // database.ref('doneToDos').get().then((snapshot) => {
-        //     if (snapshot.exists()) {
-        //         console.log(snapshot.val());
-        //         setDoneToDos(snapshot.val());
-        //     } else {
-        //         console.log("No data available");
-        //     }
-        // }).catch((error) => {
-        //     console.error(error);
-        // });
     }
 
     const saveLocalTodos = () => {
@@ -123,19 +91,13 @@ const ToDoList = () => {
     }
 
     useEffect(() => {
-        //getLocalTodos();
         getFirebase();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
-    // useEffect(() => {
-    //     saveLocalTodos();
-    //     pushFirebase();
-    // }, [, doneToDos])
-
     useEffect(() => {
-        //saveLocalTodos();
-        //setFirebase();
+        setTimeout(setFirebase(), 2000);
+        saveLocalTodos();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [deletedCount, toDos, doneToDos])
 
