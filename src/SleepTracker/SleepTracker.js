@@ -1,41 +1,54 @@
 import React from 'react'
 //
-import { Line } from 'react-chartjs-2';
+import { Bar } from 'react-chartjs-2';
 
+const monthNames = ["January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
+];
 
 const data = {
-    labels: ['1', '2', '3', '4', '5', '6'],
-    datasets: [
-        {
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
-            fill: false,
-            backgroundColor: 'rgb(255, 99, 132)',
-            borderColor: 'rgba(255, 99, 132, 0.2)',
-        },
+    labels: [
+        [monthNames[new Date().getMonth()], new Date().getMonth()], 
+        [monthNames[new Date().getMonth()], new Date().getMonth()], 
+        [monthNames[new Date().getMonth()], new Date().getMonth()], 
+        [monthNames[new Date().getMonth()], new Date().getMonth()], 
+        [monthNames[new Date().getMonth()], new Date().getMonth()], 
+        [monthNames[new Date().getMonth()], new Date().getMonth()], 
+
     ],
+    datasets: [
+                {
+                    label: '# of Votes',
+                    data: [[-3, 5], [2, 10], [1, 3], [-4, -1], [4, 8], [3, 5]],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(255, 159, 64, 0.2)',
+                        'rgba(255, 205, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(201, 203, 207, 0.2)'
+                    ],
+                },
+            ],
 };
 
 const options = {
     scales: {
-        yAxes: [
-            {
-                ticks: {
-                    beginAtZero: true,
-                },
-            },
-        ],
-    },
+        y: {
+            min: -5,
+            max: 12
+        }
+    }
 };
 
 
 const SleepTracker = () => {
-
     return (
-        <div>
-            <div className='signup w3 bg-white p-4'>
+        <div className='bg-white'>
+            <div className='signup w3 p-4'>
                 <h1 className='font-bold text-2xl mb-4'>Sleep Tracker</h1>
-                <canvas id="myChart" width="400" height="400"></canvas>
+                {/* <canvas id="myChart" width="400" height="400"></canvas> */}
             </div>
             <div className='header'>
                 <h1 className='title'>Line Chart</h1>
@@ -48,7 +61,7 @@ const SleepTracker = () => {
                     </a>
                 </div>
             </div>
-            <Line data={data} options={options} />
+            <Bar data={data} options={options} />
         </div>
     )
 }
