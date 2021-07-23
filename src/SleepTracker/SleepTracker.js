@@ -36,8 +36,11 @@ const data = {
 const options = {
     scales: {
         y: {
-            min: -5,
-            max: 12
+            min: -4,
+            max: 11,
+            ticks: {
+                stepSize: 1
+              }
         }
     }
 };
