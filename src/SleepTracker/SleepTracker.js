@@ -6,41 +6,73 @@ const monthNames = ["January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December"
 ];
 
+let d = new Date();
+
 const data = {
     labels: [
-        [monthNames[new Date().getMonth()], new Date().getMonth()], 
-        [monthNames[new Date().getMonth()], new Date().getMonth()], 
-        [monthNames[new Date().getMonth()], new Date().getMonth()], 
-        [monthNames[new Date().getMonth()], new Date().getMonth()], 
-        [monthNames[new Date().getMonth()], new Date().getMonth()], 
-        [monthNames[new Date().getMonth()], new Date().getMonth()], 
-
+        [monthNames[d.getMonth()], d.getDate() - 6],
+        [monthNames[d.getMonth()], d.getDate() - 5],
+        [monthNames[d.getMonth()], d.getDate() - 4],
+        [monthNames[d.getMonth()], d.getDate() - 3],
+        [monthNames[d.getMonth()], d.getDate() - 2],
+        [monthNames[d.getMonth()], d.getDate() - 1],
+        [monthNames[d.getMonth()], d.getDate()],
     ],
     datasets: [
-                {
-                    label: '# of Votes',
-                    data: [[-3, 5], [2, 10], [1, 3], [-4, -1], [4, 8], [3, 5]],
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(255, 159, 64, 0.2)',
-                        'rgba(255, 205, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(201, 203, 207, 0.2)'
-                    ],
-                },
-            ],
+        {
+            label: 'hours sleeping',
+            data: [[3, 5], [2, 10], [1, 3], [4, 1], [4, 8], [3, 5], [4, 11]],
+            backgroundColor: 'rgb(33, 120, 255)',
+            borderColor: 'rgb(255, 255, 255)',
+            color: 'rgb(255, 255, 255)',
+        },
+    ],
 };
 
 const options = {
     scales: {
         y: {
-            min: -4,
-            max: 11,
+            min: 0,
+            max: 14,
             ticks: {
-                stepSize: 1
-              }
+                stepSize: 1,
+                callback: function (value) {
+                    switch (value) {
+                        case 0:
+                            return '10:00';
+                        case 1:
+                            return '11:00';
+                        case 2:
+                            return '10:00';
+                        case 3:
+                            return '9:00';
+                        case 4:
+                            return '8:00';
+                        case 5:
+                            return '7:00';
+                        case 6:
+                            return '6:00';
+                        case 7:
+                            return '5:00';
+                        case 8:
+                            return '4:00';
+                        case 9:
+                            return '3:00';
+                        case 10:
+                            return '2:00';
+                        case 11:
+                            return '1:00';
+                        case 12:
+                            return '12:00';
+                        case 13:
+                            return '11:00';
+                        case 14:
+                            return '10:00';
+                        default:
+                            return 'something went wrong'
+                    }
+                }
+            }
         }
     }
 };
@@ -48,21 +80,10 @@ const options = {
 
 const SleepTracker = () => {
     return (
-        <div className='bg-white'>
+        <div className='bg-black'>
             <div className='signup w3 p-4'>
                 <h1 className='font-bold text-2xl mb-4'>Sleep Tracker</h1>
                 {/* <canvas id="myChart" width="400" height="400"></canvas> */}
-            </div>
-            <div className='header'>
-                <h1 className='title'>Line Chart</h1>
-                <div className='links'>
-                    <a
-                        className='btn btn-gh'
-                        href='https://github.com/reactchartjs/react-chartjs-2/blob/master/example/src/charts/Line.js'
-                    >
-                        Github Source
-                    </a>
-                </div>
             </div>
             <Bar data={data} options={options} />
         </div>
