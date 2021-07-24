@@ -67,7 +67,7 @@ const options = {
                         case 13:
                             return '11:00';
                         case 14:
-                            return '10:00';
+                            return '12:00';
                         default:
                             return 'something went wrong'
                     }
