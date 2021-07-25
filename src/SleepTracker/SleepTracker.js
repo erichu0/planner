@@ -83,8 +83,8 @@ const SleepTracker = () => {
         <div className='bg-black'>
             <div className='signup w3 p-4'>
                 <h1 className='font-bold text-2xl mb-4'>Sleep Tracker</h1>
-                {/* <canvas id="myChart" width="400" height="400"></canvas> */}
             </div>
+            <Bar data={data} options={options} />
             <Bar data={data} options={options} />
         </div>
     )
