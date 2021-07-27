@@ -67,7 +67,7 @@ const options = {
                         case 13:
                             return '11:00';
                         case 14:
-                            return '12:00';
+                            return '10:00';
                         default:
                             return 'something went wrong'
                     }
@@ -81,10 +81,13 @@ const options = {
 const SleepTracker = () => {
     return (
         <div className='bg-black'>
+            <form>
+                <input type='text'></input>
+                <button className='bg-yellow-500'>hello</button>
+            </form>
             <div className='signup w3 p-4'>
                 <h1 className='font-bold text-2xl mb-4'>Sleep Tracker</h1>
             </div>
-            <Bar data={data} options={options} />
             <Bar data={data} options={options} />
         </div>
     )
