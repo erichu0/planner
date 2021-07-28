@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 //
 import { Bar } from 'react-chartjs-2';
 
@@ -79,11 +79,18 @@ const options = {
 
 
 const SleepTracker = () => {
+    const [time, setTime] = useState({});
+
+    const timeHandler = (e) = {
+        date = new Date();
+        setTime(date);
+    }
+
     return (
         <div className='bg-black'>
             <form>
                 <input type='text'></input>
-                <button className='bg-yellow-500'>hello</button>
+                <button className='bg-yellow-500' onClick={timeHandler}>hello</button>
             </form>
             <div className='signup w3 p-4'>
                 <h1 className='font-bold text-2xl mb-4'>Sleep Tracker</h1>
