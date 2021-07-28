@@ -79,11 +79,11 @@ const options = {
 
 
 const SleepTracker = () => {
-    const [time, setTime] = useState({});
+    const [time, setTime] = useState("");
 
-    const timeHandler = (e) = {
-        date = new Date();
-        setTime(date);
+    const timeHandler = (e) => {
+        e.preventDefault();
+        setTime(new Date().getSeconds());
     }
 
     return (
@@ -94,6 +94,7 @@ const SleepTracker = () => {
             </form>
             <div className='signup w3 p-4'>
                 <h1 className='font-bold text-2xl mb-4'>Sleep Tracker</h1>
+                <p>{time}</p>
             </div>
             <Bar data={data} options={options} />
         </div>
