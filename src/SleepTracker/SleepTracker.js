@@ -94,6 +94,8 @@ const SleepTracker = () => {
             <form>
                 <input type='text'></input>
                 <button className='bg-yellow-500' onClick={timeHandler}>hello</button>
+                <button className='bg-yellow-500' onClick={timeHandler}>Sleep Now</button>
+                <button className='bg-yellow-500' onClick={timeHandler}>Wake up Now</button>
             </form>
             <div className='signup w3 p-4'>
                 <h1 className='font-bold text-2xl mb-4'>Sleep Tracker</h1>
