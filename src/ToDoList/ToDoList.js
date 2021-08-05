@@ -17,34 +17,6 @@ const ToDoList = () => {
 
     var toDoData, doneToDoData;
 
-    // function toDosChecker() {
-    //     return new Promise((resolve, reject) => {
-    //         if (toDos) { //if todos is defined
-    //             resolve();
-    //         }
-    //     });
-    // }
-
-    // function pushFirebase() {
-    //     toDosChecker()
-    //         .then(() => {
-    //             console.log(toDos, 'bruh');
-    //             if (toDos.length > 0) {
-    //                 toDoData = {
-    //                     name: toDos[toDos.length - 1].text,
-    //                 }
-    //                 /*toDos[toDos.length - 1].id = */database.ref('toDos').push(toDoData); //set the ref, task id and push at the same time
-
-    //                 if (doneToDos.length > 0) {
-    //                     doneToDoData = {
-    //                         name: doneToDos[doneToDos.length - 1].text,
-    //                     }
-    //                     /*doneToDos[doneToDos.length - 1].id = */database.ref('doneToDos').push(doneToDoData);
-    //                 }
-    //             }
-    //         })
-    // }
-
     function setFirebase() {
         console.log('setting');
         toDoData = toDos;

@@ -11,6 +11,14 @@ const SleepTracker = () => {
         setTime([...time, new Date().getMinutes()]);
     }
 
+    const sleepHandler = (e) => {
+
+    }
+
+    const timeHandler = (e) => {
+        
+    }
+
     const monthNames = ["January", "February", "March", "April", "May", "June",
         "July", "August", "September", "October", "November", "December"];
 
@@ -94,7 +102,7 @@ const SleepTracker = () => {
             <form>
                 <input type='text'></input>
                 <button className='bg-yellow-500' onClick={timeHandler}>hello</button>
-                <button className='bg-yellow-500' onClick={timeHandler}>Sleep Now</button>
+                <button className='bg-yellow-500' onClick={sleepHandler}>Sleep Now</button>
                 <button className='bg-yellow-500' onClick={timeHandler}>Wake up Now</button>
             </form>
             <div className='signup w3 p-4'>
