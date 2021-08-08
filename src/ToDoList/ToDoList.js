@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext, useRef } from "react";
 
 import './ToDoList.css';
 
-import Input from "./Input";
+import Input from "./TaskInput";
 import TaskList from "./TaskList";
 import Done from "./Done";
 import { DatabaseContext } from "../firebase";
@@ -20,11 +20,9 @@ const ToDoList = () => {
     function setFirebase() {
         console.log('setting');
         toDoData = toDos;
-        //console.log("tododata", toDoData)
         database.ref('toDos').set(toDoData);
 
         doneToDoData = doneToDos;
-        //console.log("donetododata", doneToDoData)
         database.ref('doneToDos').set(doneToDoData);
     }
 
