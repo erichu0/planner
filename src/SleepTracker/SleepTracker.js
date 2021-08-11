@@ -3,7 +3,7 @@ import SleepChart from './SleepChart';
 
 const SleepTracker = () => {
 
-    //const [time, setTime] = useState([]);
+    const [time, setTime] = useState([]);
 
     let d = new Date();
     const monthNames = ["January", "February", "March", "April", "May", "June",
