@@ -29,9 +29,7 @@ const SleepInput = (time, setTime, times, data, options) => {
                 <button className='bg-yellow-500' onClick={sleepHandler}>Sleep Now</button>
                 <button className='bg-yellow-500' onClick={wakeUpHandler}>Wake up Now</button>
             </form>
-            <div className='signup w3 p-4'>
-                <h1 className='font-bold text-2xl mb-4'>Sleep Tracker</h1>
-            </div>
+            
             <SleepChart
                 data={data}
                 options={options}

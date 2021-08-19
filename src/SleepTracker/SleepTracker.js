@@ -14,6 +14,9 @@ const SleepTracker = () => {
 
     return (
         <div className='bg-black'>
+            <div className='signup w3 p-4'>
+                <h1 className='font-bold text-2xl mb-4'>Sleep Tracker</h1>
+            </div>
             <SleepInput 
                 time={time}
                 setTime={setTime}
