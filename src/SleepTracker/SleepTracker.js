@@ -1,38 +1,29 @@
-import React from 'react'
+import React, { useState } from 'react'
+
+import './sleepStyle.css'
+
+import SleepInput from './SleepInput';
 import SleepChart from './SleepChart';
-import SleepInput from './SleepInput'
 
-const SleepTracker = () => {
+const App = () => {
+  const [sleepData, setSleepData] = useState([1, 0, 0, 0, 0, 0, 0]);
+  const [wakeData, setWakeData] = useState([0, 0, 0, 0, 0, 0, 0]);
 
-    const [time, setTime] = useState([]);
-
-    let d = new Date();
-    const monthNames = ["January", "February", "March", "April", "May", "June",
-        "July", "August", "September", "October", "November", "December"];
-
-    let times = [[0, 1], [0, 1],[0, 1],[0, 1],[0, 1],[0, 1],[0, 1]];
-
-    return (
-        <div className='bg-black'>
-            <div className='signup w3 p-4'>
-                <h1 className='font-bold text-2xl mb-4'>Sleep Tracker</h1>
-            </div>
-            <SleepInput 
-                time={time}
-                setTime={setTime}
-                times={times}
-                data={data}
-                options={options}
-            />
-            <div className='signup w3 p-4'>
-                <h1 className='font-bold text-2xl mb-4'>Sleep Tracker</h1>
-            </div>
-            <SleepChart
-                data={data}
-                options={options}
-             />
-        </div>
-    )
+  return (
+    <div className='bg-white'>
+      <p className='bg-blue-400'>Best Sleep Tracker</p>
+      <SleepInput 
+        sleepData={sleepData} 
+        setSleepData={setSleepData}
+        wakeData={wakeData} 
+        setWakeData={setWakeData}
+      />
+      <SleepChart
+        sleepData={sleepData} 
+        wakeData={wakeData}
+      />
+    </div>
+  )
 }
 
-export default SleepTracker
+export default App;

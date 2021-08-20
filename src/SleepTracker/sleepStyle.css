@@ -1,0 +1,5 @@
+.temp {
+    @apply border-2;
+    @apply border-yellow-200;
+    @apply m-1;
+}

@@ -1,83 +1,51 @@
-import React/*, { useState }*/ from 'react'
-//
+import React from 'react';
 import { Bar } from 'react-chartjs-2';
 
-
-const SleepChart = (data, options) => {
+const Chart = ({ sleepData, wakeData }) => {
+    let date = new Date().getDate();
     const data = {
-        labels: [
-            [monthNames[d.getMonth()], d.getDate() - 6],
-            [monthNames[d.getMonth()], d.getDate() - 5],
-            [monthNames[d.getMonth()], d.getDate() - 4],
-            [monthNames[d.getMonth()], d.getDate() - 3],
-            [monthNames[d.getMonth()], d.getDate() - 2],
-            [monthNames[d.getMonth()], d.getDate() - 1],
-            [monthNames[d.getMonth()], d.getDate()],
-        ],
+
+        labels: [date - 6, date - 5, date - 4, date - 3, date - 2, date - 1, date],
         datasets: [
             {
-                label: 'hours sleeping',
-                data: times.slice(-7,-1),
-                backgroundColor: 'rgb(33, 120, 255)',
-                borderColor: 'rgb(255, 255, 255)',
-                color: 'rgb(255, 255, 255)',
+                data: [[sleepData[wakeData.length - 6], wakeData[wakeData.length - 6]], [sleepData[wakeData.length - 5], wakeData[wakeData.length - 5]], [sleepData[wakeData.length - 4], wakeData[wakeData.length - 4]], [sleepData[wakeData.length - 3], wakeData[wakeData.length - 3]], [sleepData[wakeData.length - 2], wakeData[wakeData.length - 2]], [sleepData[wakeData.length - 1], wakeData[wakeData.length - 1]]],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.5)'
+                ],
+                borderWidth: 0,
             },
         ],
     };
 
     const options = {
+        elements: {
+            bar: {
+                borderWidth: 2,
+            },
+        },
+        responsive: true,
+        plugins: {
+            legend: {
+                position: 'top',
+            },
+            title: {
+                display: false,
+            },
+        },
         scales: {
             y: {
                 min: 0,
-                max: 14,
-                ticks: {
-                    stepSize: 1,
-                    callback: function (value) {
-                        switch (value) {
-                            case 0:
-                                return '12:00 AM';
-                            case 1:
-                                return '11:00 AM';
-                            case 2:
-                                return '10:00 AM';
-                            case 3:
-                                return '9:00 AM';
-                            case 4:
-                                return '8:00 AM';
-                            case 5:
-                                return '7:00 AM';
-                            case 6:
-                                return '6:00 AM';
-                            case 7:
-                                return '5:00 AM';
-                            case 8:
-                                return '4:00 AM';
-                            case 9:
-                                return '3:00 AM';
-                            case 10:
-                                return '2:00 AM';
-                            case 11:
-                                return '1:00 AM';
-                            case 12:
-                                return '12:00 PM';
-                            case 13:
-                                return '11:00 PM';
-                            case 14:
-                                return '10:00 PM';
-                            default:
-                                return 'something went wrong';
-                        }
-                    }
-                }
+                max: 24,
             }
         }
     };
 
     return (
-        <div className='bg-black'>
+        <div>
+            <p>Chart</p>
             <Bar data={data} options={options} />
         </div>
     )
 }
 
-export default SleepChart
+export default Chart;

@@ -1,41 +1,93 @@
-import React from 'react'
+import React, { useState } from 'react'
 
-const SleepInput = (time, setTime, times, data, options) => {
-    let d = new Date();
+const Input = ({ setSleepData, sleepData, wakeData, setWakeData }) => {
+    const [buttonStatus, setButtonStatus] = useState(false);
+    const [typeStatus, setTypeStatus] = useState(false);
 
-    let times = [[0, 1], [0, 1],[0, 1],[0, 1],[0, 1],[0, 1],[0, 1]];
-
-    const timeHandler = (e) => {
+    const date = new Date();
+    let decimalTime = date.getHours() + date.getMinutes() / 60 + date.getSeconds() / 60 / 60;
+    const statusHandler = (e) => {
         e.preventDefault();
-        setTime([...time, new Date().getMinutes()]);
+        setTypeStatus(!typeStatus);
     }
 
     const sleepHandler = (e) => {
         e.preventDefault();
-        times.shift()
-        times.push([1, 3]);
-        console.log(times);
-        data.datasets.data = times;
+        if (buttonStatus === false) {
+            setSleepData([...sleepData, decimalTime]);
+            console.log("Sleep Times", sleepData, decimalTime);
+
+            setButtonStatus(true);
+        }
     }
 
-    const wakeUpHandler = (e) => {
+    const wakeHandler = (e) => {
+        e.preventDefault();
+        if (buttonStatus === true) {
+            setWakeData([...wakeData, decimalTime]);
+            console.log("Wake Times", wakeData, decimalTime);
+
+            setButtonStatus(false);
+        }
+    }
+
+    const manualSleepHandler = (e) => {
+        e.preventDefault();
+        if (buttonStatus === true) {
+            setWakeData([...wakeData, decimalTime]);
+            console.log("Wake Times", wakeData, decimalTime);
+
+            setButtonStatus(true);
+        }
+    }
+
+    const manualWakeHandler = (e) => {
         e.preventDefault();
     }
 
     return (
-        <div className='bg-black'>
-            <form>
-                <input type='text'></input>
-                <button className='bg-yellow-500' onClick={sleepHandler}>Sleep Now</button>
-                <button className='bg-yellow-500' onClick={wakeUpHandler}>Wake up Now</button>
-            </form>
-            
-            <SleepChart
-                data={data}
-                options={options}
-             />
+        <div>
+            <p>Input</p>
+            <p className='inline'>Input Type: {typeStatus ? "Auto" : "Manual"}</p>
+            <button onClick={statusHandler} className='temp'>{typeStatus ? "Change to Manual" : "Change to Auto"}</button>
+            <br />
+
+            {typeStatus ?
+                (
+                    <div>
+                        {buttonStatus ?
+                            (
+                                <div>
+                                    <button onClick={wakeHandler} className='temp'>Wake Up Now</button>
+                                    <br />
+                                </div>
+                            ) : (
+                                <div>
+                                    <button onClick={sleepHandler} className='temp'>Sleep Now</button>
+                                    <br />
+                                </div>
+                            )}
+                    </div>
+                ) : (
+                    <div>
+                        {buttonStatus ?
+                            (
+                                <form>
+                                    <input type='text' className='temp'></input>
+                                    <button onClick={manualSleepHandler} type='submit' className='temp'>Sleep</button>
+                                </form>
+
+                            ) : (
+                                <form>
+                                    <input type='text' className='temp'></input>
+                                    <button onClick={manualWakeHandler} type='submit' className='temp'>Wake Up</button>
+                                </form>
+                            )}
+                    </div>
+                )
+            }
         </div>
     )
 }
 
-export default SleepTracker
+export default Input;
