@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 
 const Input = ({ setSleepData, sleepData, wakeData, setWakeData }) => {
-    const [buttonStatus, setButtonStatus] = useState(false);
-    const [typeStatus, setTypeStatus] = useState(false);
+    const [buttonStatus, setButtonStatus] = useState(false); //false = sleep, true = wake
+    const [typeStatus, setTypeStatus] = useState(false); //false = manual, true = auto
 
     const date = new Date();
     let decimalTime = date.getHours() + date.getMinutes() / 60 + date.getSeconds() / 60 / 60;

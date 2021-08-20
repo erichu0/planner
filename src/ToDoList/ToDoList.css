@@ -9,12 +9,6 @@
   grid-template-columns: repeat(13, 1fr);
 }
 
-@media screen and (max-width: 750px) {
-  .to-do-list {
-    display: flex;
-    flex-direction: column;
-  }
-}
 .section {
   margin-bottom: 1rem;
 }

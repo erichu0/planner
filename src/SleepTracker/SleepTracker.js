@@ -10,7 +10,7 @@ const App = () => {
   const [wakeData, setWakeData] = useState([0, 0, 0, 0, 0, 0, 0]);
 
   return (
-    <div className='bg-white'>
+    <div className='bg-white px-4'>
       <p className='bg-blue-400'>Best Sleep Tracker</p>
       <SleepInput 
         sleepData={sleepData} 

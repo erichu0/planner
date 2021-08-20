@@ -4,6 +4,7 @@ import reportWebVitals from './reportWebVitals';
 
 import './weektracking.css'
 import './tailwind.css'
+import './responsive.css'
 
 import App from './App';
 
