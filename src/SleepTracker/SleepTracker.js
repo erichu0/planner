@@ -11,7 +11,6 @@ const App = () => {
 
   return (
     <div className='bg-white px-4'>
-      <p className='bg-blue-400'>Best Sleep Tracker</p>
       <SleepInput 
         sleepData={sleepData} 
         setSleepData={setSleepData}
