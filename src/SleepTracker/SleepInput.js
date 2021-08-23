@@ -1,4 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+
+import './sleepStyle.css';
 
 const Input = ({ setSleepData, sleepData, wakeData, setWakeData }) => {
     const [buttonStatus, setButtonStatus] = useState(false); //false = sleep, true = wake
@@ -73,16 +75,25 @@ const Input = ({ setSleepData, sleepData, wakeData, setWakeData }) => {
                         {buttonStatus ?
                             (
                                 <form>
-                                    <input type='text' className='temp'></input>
-                                    <button onClick={manualSleepHandler} type='submit' className='temp'>Sleep</button>
+                                    <input type='text' className='temp time-input'></input>
+                                    <input type='text' className='temp time-input'></input>
+                                    <input type='text' className='temp time-input'></input>
+                                    <button onClick={manualSleepHandler} type='submit' className=''>Sleep</button>
                                 </form>
 
                             ) : (
                                 <form>
-                                    <input type='text' className='temp'></input>
-                                    <button onClick={manualWakeHandler} type='submit' className='temp'>Wake Up</button>
+                                    <input type='text' className='temp time-input'></input>
+                                    <input type='text' className='temp time-input'></input>
+                                    <input type='text' className='temp time-input'></input>
+                                    <select>
+                                        <option>AM</option>
+                                        <option>PM</option>
+                                    </select>
+                                    <button onClick={manualWakeHandler} type='submit' className=''>Wake Up</button>
                                 </form>
-                            )}
+                            )
+                        }
                     </div>
                 )
             }

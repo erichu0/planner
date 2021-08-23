@@ -1,5 +1,10 @@
 .temp {
+    @apply bg-white;
     @apply border-2;
-    @apply border-yellow-200;
+    @apply border-blue-300;
     @apply m-1;
+}
+
+.time-input {
+    @apply w-12;
 }
