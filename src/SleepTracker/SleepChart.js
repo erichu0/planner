@@ -9,7 +9,7 @@ const Chart = ({ sleepData, wakeData }) => {
             {
                 data: [[sleepData[wakeData.length - 7], wakeData[wakeData.length - 7]], [sleepData[wakeData.length - 6], wakeData[wakeData.length - 6]], [sleepData[wakeData.length - 5], wakeData[wakeData.length - 5]], [sleepData[wakeData.length - 4], wakeData[wakeData.length - 4]], [sleepData[wakeData.length - 3], wakeData[wakeData.length - 3]], [sleepData[wakeData.length - 2], wakeData[wakeData.length - 2]], [sleepData[wakeData.length - 1], wakeData[wakeData.length - 1]]],
                 backgroundColor: [
-                    'rgba(255, 99, 132, 0.5)'
+                    'rgb(147, 197, 253)'
                 ],
                 borderWidth: 0,
             },
@@ -30,6 +30,12 @@ const Chart = ({ sleepData, wakeData }) => {
             title: {
                 display: false,
             },
+            tooltip: {
+                callbacks: {
+                    title: _ => {return new Date()},
+                    label: _ => {return "Data"}
+                }
+            }
         },
         scales: {
             y: {

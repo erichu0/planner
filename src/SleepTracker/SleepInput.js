@@ -104,7 +104,7 @@ const Input = ({ setSleepData, sleepData, wakeData, setWakeData }) => {
                             <label>:</label>
                             <input type="number" onChange={minutesHandler} value={minutes} className='temp time-input' min="0" max="59"></input>
 
-                            <select className='temp time-input' onChange={ampmHandler} value={ampm}>
+                            <select className='temp time-input h-7' onChange={ampmHandler} value={ampm}>
                                 <option>AM</option>
                                 <option>PM</option>
                             </select>
