@@ -7,7 +7,7 @@ const Chart = ({ sleepData, wakeData }) => {
         labels: [date - 6, date - 5, date - 4, date - 3, date - 2, date - 1, date],
         datasets: [
             {
-                data: [[sleepData[wakeData.length - 6], wakeData[wakeData.length - 6]], [sleepData[wakeData.length - 5], wakeData[wakeData.length - 5]], [sleepData[wakeData.length - 4], wakeData[wakeData.length - 4]], [sleepData[wakeData.length - 3], wakeData[wakeData.length - 3]], [sleepData[wakeData.length - 2], wakeData[wakeData.length - 2]], [sleepData[wakeData.length - 1], wakeData[wakeData.length - 1]]],
+                data: [[sleepData[wakeData.length - 7], wakeData[wakeData.length - 7]], [sleepData[wakeData.length - 6], wakeData[wakeData.length - 6]], [sleepData[wakeData.length - 5], wakeData[wakeData.length - 5]], [sleepData[wakeData.length - 4], wakeData[wakeData.length - 4]], [sleepData[wakeData.length - 3], wakeData[wakeData.length - 3]], [sleepData[wakeData.length - 2], wakeData[wakeData.length - 2]], [sleepData[wakeData.length - 1], wakeData[wakeData.length - 1]]],
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.5)'
                 ],
@@ -35,8 +35,10 @@ const Chart = ({ sleepData, wakeData }) => {
             y: {
                 min: 0,
                 max: 24,
+                reverse: true
             }
-        }
+        },
+
     };
 
     return (

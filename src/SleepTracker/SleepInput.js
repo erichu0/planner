@@ -3,8 +3,6 @@ import React, { useState, useEffect } from 'react';
 const Input = ({ setSleepData, sleepData, wakeData, setWakeData }) => {
     const [buttonStatus, setButtonStatus] = useState(true); //true = sleep, false = wake
     const [typeStatus, setTypeStatus] = useState(true); //true = manual, false = auto
-    const [customHours, setCustomHours] = useState(0);
-    const [customMinutes, setCustomMinutes] = useState(0);
 
     let decimalTime;
     const statusHandler = (e) => {
@@ -29,21 +27,37 @@ const Input = ({ setSleepData, sleepData, wakeData, setWakeData }) => {
         }
     }
 
+    const [hours, sethours] = useState(0);
+    const [minutes, setMinutes] = useState("00");
+    const [ampm, setAmPm] = useState('AM');
+
     const hoursHandler = (e) => {
         e.preventDefault();
-        setCustomHours(e.target.value);
+        sethours(e.target.value);
     }
 
     const minutesHandler = (e) => {
         e.preventDefault();
-        setCustomMinutes(e.target.value);
+        setMinutes(e.target.value);
+    }
+
+    const ampmHandler = (e) => {
+        e.preventDefault();
+        setAmPm(e.target.value);
     }
 
     const manualHandler = (e) => {
         e.preventDefault();
 
-        const date = new Date();
-        decimalTime = date.getHours() + date.getMinutes() / 60 + date.getSeconds() / 60 / 60;
+        decimalTime = parseFloat(hours) + parseFloat(minutes)/60;
+        
+        if (ampm === "AM") {
+            decimalTime += 12;
+        }
+
+        if (hours === 12) {
+            decimalTime -= 12;
+        }
 
         if (buttonStatus === false) {
             setSleepData([...sleepData, decimalTime]);
@@ -55,8 +69,8 @@ const Input = ({ setSleepData, sleepData, wakeData, setWakeData }) => {
             setButtonStatus(false);
         }
 
-        setCustomHours(0);
-        setCustomMinutes(0);
+        sethours(0);
+        setMinutes(0);
     }
 
     useEffect(() => {
@@ -72,35 +86,38 @@ const Input = ({ setSleepData, sleepData, wakeData, setWakeData }) => {
             <br />
             {typeStatus ?
                 (
-                    <div>
+                    <>
                         {buttonStatus ?
                             (
-                                    <button onClick={autoHandler} className='temp'>Sleep Now</button>
+                                <button onClick={autoHandler} className='temp'>Sleep Now</button>
                             ) : (
-                                    <button onClick={autoHandler} className='temp'>Wake Up Now</button>
+                                <button onClick={autoHandler} className='temp'>Wake Up Now</button>
                             )
                         }
                         <br />
-                    </div>
+                    </>
                 ) : (
-                    <form>
-                        <label>Time (Hours : Minutes)</label>
-                        <input type="number" onChange={hoursHandler} value={customHours} className='temp time-input' min="1" max="12"></input>
-                        <label>:</label>
-                        <input type="number" onChange={minutesHandler} value={customMinutes} className='temp time-input' min="1" max="59"></input>
+                    <div>
+                        <form>
+                            <label>Time (Hours : Minutes)</label>
+                            <input type="number" onChange={hoursHandler} value={hours} className='temp time-input' min="1" max="12"></input>
+                            <label>:</label>
+                            <input type="number" onChange={minutesHandler} value={minutes} className='temp time-input' min="0" max="59"></input>
 
-                        <select className='temp time-input'>
-                            <option>AM</option>
-                            <option>PM</option>
-                        </select>
-                        {buttonStatus ?
-                            (
-                                <button onClick={manualHandler} type='submit' className='temp'>Sleep</button>
-                            ) : (
-                                <button onClick={manualHandler} type='submit' className='temp'>Wake Up</button>
-                            )
-                        }
-                    </form>
+                            <select className='temp time-input' onChange={ampmHandler} value={ampm}>
+                                <option>AM</option>
+                                <option>PM</option>
+                            </select>
+                            {buttonStatus ?
+                                (
+                                    <button onClick={manualHandler} type='submit' className='temp'>Sleep</button>
+                                ) : (
+                                    <button onClick={manualHandler} type='submit' className='temp'>Wake Up</button>
+                                )
+                            }
+                        </form>
+                        {}
+                    </div>
                 )
             }
         </div>
