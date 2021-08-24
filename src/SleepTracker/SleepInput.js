@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const Input = ({ setSleepData, sleepData, wakeData, setWakeData }) => {
-    const [buttonStatus, setButtonStatus] = useState(false); //false = sleep, true = wake
-    const [typeStatus, setTypeStatus] = useState(false); //false = manual, true = auto
+    const [buttonStatus, setButtonStatus] = useState(true); //true = sleep, false = wake
+    const [typeStatus, setTypeStatus] = useState(true); //true = manual, false = auto
+    const [customHours, setCustomHours] = useState(0);
+    const [customMinutes, setCustomMinutes] = useState(0);
 
-    const date = new Date();
-    let decimalTime = date.getHours() + date.getMinutes() / 60 + date.getSeconds() / 60 / 60;
+    let decimalTime;
     const statusHandler = (e) => {
         e.preventDefault();
         setTypeStatus(!typeStatus);
@@ -13,35 +14,55 @@ const Input = ({ setSleepData, sleepData, wakeData, setWakeData }) => {
 
     const autoHandler = (e) => {
         e.preventDefault();
+
+        const date = new Date();
+        decimalTime = date.getHours() + date.getMinutes() / 60 + date.getSeconds() / 60 / 60;
+
+        if (buttonStatus === true) {
+            setSleepData([...sleepData, decimalTime]);
+
+            setButtonStatus(false);
+        } else if (buttonStatus === false) {
+            setWakeData([...wakeData, decimalTime]);
+
+            setButtonStatus(true);
+        }
+    }
+
+    const hoursHandler = (e) => {
+        e.preventDefault();
+        setCustomHours(e.target.value);
+    }
+
+    const minutesHandler = (e) => {
+        e.preventDefault();
+        setCustomMinutes(e.target.value);
+    }
+
+    const manualHandler = (e) => {
+        e.preventDefault();
+
+        const date = new Date();
+        decimalTime = date.getHours() + date.getMinutes() / 60 + date.getSeconds() / 60 / 60;
+
         if (buttonStatus === false) {
             setSleepData([...sleepData, decimalTime]);
-            console.log("Sleep Times", sleepData, decimalTime);
-            console.log(sleepData);
 
             setButtonStatus(true);
         } else if (buttonStatus === true) {
             setWakeData([...wakeData, decimalTime]);
-            console.log("Wake Times", wakeData, decimalTime);
-            console.log(wakeData);
 
             setButtonStatus(false);
         }
+
+        setCustomHours(0);
+        setCustomMinutes(0);
     }
 
-    const manualSleepHandler = (e) => {
-        e.preventDefault();
-        if (buttonStatus === true) {
-            setWakeData([...wakeData, decimalTime]);
-            console.log("Wake Times", wakeData, decimalTime);
-            
-
-            setButtonStatus(true);
-        }
-    }
-
-    const manualWakeHandler = (e) => {
-        e.preventDefault();
-    }
+    useEffect(() => {
+        console.log("Sleep Times", sleepData);
+        console.log("Wake Times", wakeData);
+    }, [sleepData, wakeData])
 
     return (
         <div>
@@ -54,41 +75,32 @@ const Input = ({ setSleepData, sleepData, wakeData, setWakeData }) => {
                     <div>
                         {buttonStatus ?
                             (
-                                <div>
-                                    <button onClick={autoHandler} className='temp'>Wake Up Now</button>
-                                    <br />
-                                </div>
-                            ) : (
-                                <div>
                                     <button onClick={autoHandler} className='temp'>Sleep Now</button>
-                                    <br />
-                                </div>
-                            )}
-                    </div>
-                ) : (
-                    <div>
-                        {buttonStatus ?
-                            (
-                                <form>
-                                    <input type='text' className='temp time-input'></input>
-                                    <input type='text' className='temp time-input'></input>
-                                    <input type='text' className='temp time-input'></input>
-                                    <button onClick={manualSleepHandler} type='submit' className=''>Sleep</button>
-                                </form>
                             ) : (
-                                <form>
-                                    <input type='text' className='temp time-input'></input>
-                                    <input type='text' className='temp time-input'></input>
-                                    <input type='text' className='temp time-input'></input>
-                                    <select>
-                                        <option>AM</option>
-                                        <option>PM</option>
-                                    </select>
-                                    <button onClick={manualWakeHandler} type='submit' className='temp'>Wake Up</button>
-                                </form>
+                                    <button onClick={autoHandler} className='temp'>Wake Up Now</button>
                             )
                         }
+                        <br />
                     </div>
+                ) : (
+                    <form>
+                        <label>Time (Hours : Minutes)</label>
+                        <input type="number" onChange={hoursHandler} value={customHours} className='temp time-input' min="1" max="12"></input>
+                        <label>:</label>
+                        <input type="number" onChange={minutesHandler} value={customMinutes} className='temp time-input' min="1" max="59"></input>
+
+                        <select className='temp time-input'>
+                            <option>AM</option>
+                            <option>PM</option>
+                        </select>
+                        {buttonStatus ?
+                            (
+                                <button onClick={manualHandler} type='submit' className='temp'>Sleep</button>
+                            ) : (
+                                <button onClick={manualHandler} type='submit' className='temp'>Wake Up</button>
+                            )
+                        }
+                    </form>
                 )
             }
         </div>
