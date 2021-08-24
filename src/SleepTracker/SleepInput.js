@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 
-import './sleepStyle.css';
-
 const Input = ({ setSleepData, sleepData, wakeData, setWakeData }) => {
     const [buttonStatus, setButtonStatus] = useState(false); //false = sleep, true = wake
     const [typeStatus, setTypeStatus] = useState(false); //false = manual, true = auto
@@ -13,21 +11,18 @@ const Input = ({ setSleepData, sleepData, wakeData, setWakeData }) => {
         setTypeStatus(!typeStatus);
     }
 
-    const sleepHandler = (e) => {
+    const autoHandler = (e) => {
         e.preventDefault();
         if (buttonStatus === false) {
             setSleepData([...sleepData, decimalTime]);
             console.log("Sleep Times", sleepData, decimalTime);
+            console.log(sleepData);
 
             setButtonStatus(true);
-        }
-    }
-
-    const wakeHandler = (e) => {
-        e.preventDefault();
-        if (buttonStatus === true) {
+        } else if (buttonStatus === true) {
             setWakeData([...wakeData, decimalTime]);
             console.log("Wake Times", wakeData, decimalTime);
+            console.log(wakeData);
 
             setButtonStatus(false);
         }
@@ -38,6 +33,7 @@ const Input = ({ setSleepData, sleepData, wakeData, setWakeData }) => {
         if (buttonStatus === true) {
             setWakeData([...wakeData, decimalTime]);
             console.log("Wake Times", wakeData, decimalTime);
+            
 
             setButtonStatus(true);
         }
@@ -53,19 +49,18 @@ const Input = ({ setSleepData, sleepData, wakeData, setWakeData }) => {
             <p className='inline'>Input Type: {typeStatus ? "Auto" : "Manual"}</p>
             <button onClick={statusHandler} className='temp'>{typeStatus ? "Change to Manual" : "Change to Auto"}</button>
             <br />
-
             {typeStatus ?
                 (
                     <div>
                         {buttonStatus ?
                             (
                                 <div>
-                                    <button onClick={wakeHandler} className='temp'>Wake Up Now</button>
+                                    <button onClick={autoHandler} className='temp'>Wake Up Now</button>
                                     <br />
                                 </div>
                             ) : (
                                 <div>
-                                    <button onClick={sleepHandler} className='temp'>Sleep Now</button>
+                                    <button onClick={autoHandler} className='temp'>Sleep Now</button>
                                     <br />
                                 </div>
                             )}
@@ -80,7 +75,6 @@ const Input = ({ setSleepData, sleepData, wakeData, setWakeData }) => {
                                     <input type='text' className='temp time-input'></input>
                                     <button onClick={manualSleepHandler} type='submit' className=''>Sleep</button>
                                 </form>
-
                             ) : (
                                 <form>
                                     <input type='text' className='temp time-input'></input>
@@ -90,7 +84,7 @@ const Input = ({ setSleepData, sleepData, wakeData, setWakeData }) => {
                                         <option>AM</option>
                                         <option>PM</option>
                                     </select>
-                                    <button onClick={manualWakeHandler} type='submit' className=''>Wake Up</button>
+                                    <button onClick={manualWakeHandler} type='submit' className='temp'>Wake Up</button>
                                 </form>
                             )
                         }

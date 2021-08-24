@@ -4,7 +4,6 @@ import { Bar } from 'react-chartjs-2';
 const Chart = ({ sleepData, wakeData }) => {
     let date = new Date().getDate();
     const data = {
-
         labels: [date - 6, date - 5, date - 4, date - 3, date - 2, date - 1, date],
         datasets: [
             {
@@ -26,7 +25,7 @@ const Chart = ({ sleepData, wakeData }) => {
         responsive: true,
         plugins: {
             legend: {
-                position: 'top',
+                display: false
             },
             title: {
                 display: false,

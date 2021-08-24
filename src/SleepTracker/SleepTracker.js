@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-import './sleepStyle.css'
+import './SleepStyle.css'
 
 import SleepInput from './SleepInput';
 import SleepChart from './SleepChart';
