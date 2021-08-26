@@ -49,8 +49,8 @@ const Input = ({ setSleepData, sleepData, wakeData, setWakeData }) => {
     const manualHandler = (e) => {
         e.preventDefault();
 
-        decimalTime = parseFloat(hours) + parseFloat(minutes)/60;
-        
+        decimalTime = parseFloat(hours) + parseFloat(minutes) / 60;
+
         if (ampm === "AM") {
             decimalTime += 12;
         }
@@ -86,16 +86,7 @@ const Input = ({ setSleepData, sleepData, wakeData, setWakeData }) => {
             <br />
             {typeStatus ?
                 (
-                    <>
-                        {buttonStatus ?
-                            (
-                                <button onClick={autoHandler} className='temp'>Sleep Now</button>
-                            ) : (
-                                <button onClick={autoHandler} className='temp'>Wake Up Now</button>
-                            )
-                        }
-                        <br />
-                    </>
+                    <button onClick={autoHandler} className='temp'>{buttonStatus ? "Sleep Now" : "Wake Up Now"}</button>
                 ) : (
                     <div>
                         <form>
@@ -108,15 +99,9 @@ const Input = ({ setSleepData, sleepData, wakeData, setWakeData }) => {
                                 <option>AM</option>
                                 <option>PM</option>
                             </select>
-                            {buttonStatus ?
-                                (
-                                    <button onClick={manualHandler} type='submit' className='temp'>Sleep</button>
-                                ) : (
-                                    <button onClick={manualHandler} type='submit' className='temp'>Wake Up</button>
-                                )
-                            }
+                            <button onClick={manualHandler} className='temp'>{buttonStatus ? "Sleep Now" : "Wake Up Now"}</button>
                         </form>
-                        {}
+                        { }
                     </div>
                 )
             }

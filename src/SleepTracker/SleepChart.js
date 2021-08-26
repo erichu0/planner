@@ -31,10 +31,10 @@ const Chart = ({ sleepData, wakeData }) => {
                 display: false,
             },
             tooltip: {
-                callbacks: {
-                    title: _ => {return new Date()},
-                    label: _ => {return "Data"}
-                }
+                // callbacks: {
+                //     title: _ => {return "Title"},
+                //     label: _ => {return "Label"},
+                // }
             }
         },
         scales: {
