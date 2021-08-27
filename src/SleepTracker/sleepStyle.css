@@ -1,12 +1,7 @@
 .temp {
-    @apply bg-blue-300;
-    @apply text-black;
-    @apply border-2;
-    @apply border-blue-300;
-    @apply m-1;
+    @apply bg-blue-300 text-black border-2 border-blue-300 m-1 rounded-md p-1;
 }
 
 .time-input {
-    @apply bg-white;
-    @apply w-12;
+    @apply bg-white w-12;
 }
