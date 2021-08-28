@@ -17,11 +17,11 @@ const Input = ({ setSleepData, sleepData, wakeData, setWakeData }) => {
         decimalTime = date.getHours() + date.getMinutes() / 60 + date.getSeconds() / 60 / 60;
 
         if (buttonStatus === true) {
-            setSleepData([...sleepData, decimalTime]);
+            setSleepData([...sleepData, { "time": decimalTime, "date": date }]);
 
             setButtonStatus(false);
         } else if (buttonStatus === false) {
-            setWakeData([...wakeData, decimalTime]);
+            setWakeData([...wakeData, { "time": decimalTime, "date": date }]);
 
             setButtonStatus(true);
         }
@@ -60,11 +60,11 @@ const Input = ({ setSleepData, sleepData, wakeData, setWakeData }) => {
         }
 
         if (buttonStatus === false) {
-            setSleepData([...sleepData, decimalTime]);
+            setSleepData([...sleepData, { "time": decimalTime, "date": new Date() }]);
 
             setButtonStatus(true);
         } else if (buttonStatus === true) {
-            setWakeData([...wakeData, decimalTime]);
+            setWakeData([...wakeData, { "time": decimalTime, "date": new Date() }]);
 
             setButtonStatus(false);
         }
@@ -95,7 +95,7 @@ const Input = ({ setSleepData, sleepData, wakeData, setWakeData }) => {
                             <label>:</label>
                             <input type="number" onChange={minutesHandler} value={minutes} className='temp time-input' min="0" max="59"></input>
 
-                            <select className='temp time-input h-7' onChange={ampmHandler} value={ampm}>
+                            <select className='temp time-input h-9' onChange={ampmHandler} value={ampm}>
                                 <option>AM</option>
                                 <option>PM</option>
                             </select>
