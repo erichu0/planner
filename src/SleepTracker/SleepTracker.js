@@ -6,8 +6,8 @@ import SleepInput from './SleepInput';
 import SleepChart from './SleepChart';
 
 const App = () => {
-  const [sleepData, setSleepData] = useState([0, 0, 0, 0, 0, 0, 0]);
-  const [wakeData, setWakeData] = useState([0, 0, 0, 0, 0, 0, 0]);
+  const [sleepData, setSleepData] = useState({});
+  const [wakeData, setWakeData] = useState({});
 
   return (
     <div className='bg-black text-white px-4'>

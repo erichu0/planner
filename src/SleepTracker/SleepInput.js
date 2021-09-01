@@ -16,12 +16,27 @@ const Input = ({ setSleepData, sleepData, wakeData, setWakeData }) => {
         const date = new Date();
         decimalTime = date.getHours() + date.getMinutes() / 60 + date.getSeconds() / 60 / 60;
 
+        // var dateKey = new Date('2014-04-03');
+        var dateKey = new Date();
+
         if (buttonStatus === true) {
-            setSleepData([...sleepData, { "time": decimalTime, "date": date }]);
+            setSleepData({
+                ...sleepData,
+                [dateKey]: {
+                    "time": decimalTime,
+                    "date": dateKey
+                }
+            });
 
             setButtonStatus(false);
         } else if (buttonStatus === false) {
-            setWakeData([...wakeData, { "time": decimalTime, "date": date }]);
+            setWakeData({
+                ...wakeData,
+                dateKey: {
+                    "time": decimalTime,
+                    "date": dateKey
+                }
+            });
 
             setButtonStatus(true);
         }
@@ -59,12 +74,20 @@ const Input = ({ setSleepData, sleepData, wakeData, setWakeData }) => {
             decimalTime -= 12;
         }
 
+        var dateKey = new Date('2014-04-03');
+
         if (buttonStatus === false) {
-            setSleepData([...sleepData, { "time": decimalTime, "date": new Date() }]);
+            setSleepData({
+                ...sleepData,
+                dateKey: {
+                    "time": decimalTime,
+                    "date": dateKey
+                }
+            });
 
             setButtonStatus(true);
         } else if (buttonStatus === true) {
-            setWakeData([...wakeData, { "time": decimalTime, "date": new Date() }]);
+            setWakeData([...wakeData, { "time": decimalTime, "date": new Date("July 4 1776 12:30") }]);
 
             setButtonStatus(false);
         }
