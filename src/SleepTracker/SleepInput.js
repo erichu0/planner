@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import DateSelector from './DateSelector';
 
 const Input = ({ setSleepData, sleepData, wakeData, setWakeData }) => {
     const [buttonStatus, setButtonStatus] = useState(true); //true = sleep, false = wake
@@ -22,22 +23,20 @@ const Input = ({ setSleepData, sleepData, wakeData, setWakeData }) => {
         if (buttonStatus === true) {
             setSleepData({
                 ...sleepData,
-                [dateKey]: {
+                [dateKey.toDateString()]: {
                     "time": decimalTime,
                     "date": dateKey
                 }
             });
-
             setButtonStatus(false);
         } else if (buttonStatus === false) {
             setWakeData({
                 ...wakeData,
-                dateKey: {
+                [dateKey.toDateString()]: {
                     "time": decimalTime,
                     "date": dateKey
                 }
             });
-
             setButtonStatus(true);
         }
     }
@@ -79,16 +78,21 @@ const Input = ({ setSleepData, sleepData, wakeData, setWakeData }) => {
         if (buttonStatus === false) {
             setSleepData({
                 ...sleepData,
-                dateKey: {
+                [dateKey.toDateString()]: {
                     "time": decimalTime,
                     "date": dateKey
                 }
             });
-
             setButtonStatus(true);
-        } else if (buttonStatus === true) {
-            setWakeData([...wakeData, { "time": decimalTime, "date": new Date("July 4 1776 12:30") }]);
 
+        } else if (buttonStatus === true) {
+            setWakeData({
+                ...wakeData,
+                [dateKey.toDateString()]: {
+                    "time": decimalTime,
+                    "date": dateKey
+                }
+            });
             setButtonStatus(false);
         }
 
@@ -107,6 +111,9 @@ const Input = ({ setSleepData, sleepData, wakeData, setWakeData }) => {
             <p className='inline'>Input Type: {typeStatus ? "Auto" : "Manual"}</p>
             <button onClick={statusHandler} className='temp'>{typeStatus ? "Change to Manual" : "Change to Auto"}</button>
             <br />
+            <DateSelector
+                sleepData={sleepData}
+            />
             {typeStatus ?
                 (
                     <button onClick={autoHandler} className='temp'>{buttonStatus ? "Sleep Now" : "Wake Up Now"}</button>
@@ -114,9 +121,9 @@ const Input = ({ setSleepData, sleepData, wakeData, setWakeData }) => {
                     <div>
                         <form>
                             <label>Time (Hours : Minutes)</label>
-                            <input type="number" onChange={hoursHandler} value={hours} className='temp time-input' min="1" max="12"></input>
+                            <input type="number" onChange={hoursHandler} value={hours} className='temp time-input w-16' min="1" max="12"></input>
                             <label>:</label>
-                            <input type="number" onChange={minutesHandler} value={minutes} className='temp time-input' min="0" max="59"></input>
+                            <input type="number" onChange={minutesHandler} value={minutes} className='temp time-input w-16' min="0" max="59"></input>
 
                             <select className='temp time-input h-9' onChange={ampmHandler} value={ampm}>
                                 <option>AM</option>
@@ -124,7 +131,6 @@ const Input = ({ setSleepData, sleepData, wakeData, setWakeData }) => {
                             </select>
                             <button onClick={manualHandler} className='temp'>{buttonStatus ? "Sleep Now" : "Wake Up Now"}</button>
                         </form>
-                        { }
                     </div>
                 )
             }
