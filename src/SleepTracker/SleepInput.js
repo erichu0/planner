@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import DateSelector from './DateSelector';
 
-const Input = ({ setSleepData, sleepData, wakeData, setWakeData }) => {
+const Input = ({ setSleepData, sleepData, wakeData, setWakeData, setFirebase }) => {
     const [buttonStatus, setButtonStatus] = useState(true); //true = sleep, false = wake
     const [typeStatus, setTypeStatus] = useState(true); //true = manual, false = auto
 
@@ -39,6 +39,8 @@ const Input = ({ setSleepData, sleepData, wakeData, setWakeData }) => {
             });
             setButtonStatus(true);
         }
+
+        setFirebase();
     }
 
     const [hours, sethours] = useState(0);
@@ -95,7 +97,7 @@ const Input = ({ setSleepData, sleepData, wakeData, setWakeData }) => {
             });
             setButtonStatus(false);
         }
-
+        setFirebase();
         sethours(0);
         setMinutes(0);
     }
