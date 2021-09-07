@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 
 import './SleepStyle.css'
 
@@ -17,6 +17,36 @@ const App = () => {
     database.ref('sleepData').set(sleepData);
     database.ref('wakeData').set(wakeData);
   }
+
+  function getFirebase() {
+    database.ref('sleepData').get().then((snapshot) => {
+      console.log(snapshot.val());
+      if (snapshot.exists()) {
+        setSleepData(snapshot.val());
+      } else {
+        console.log("No data available");
+      }
+    }).catch((error) => {
+      console.error(error);
+    });
+
+    database.ref('wakeData').get().then((snapshot) => {
+      console.log(snapshot.val());
+      if (snapshot.exists()) {
+        setWakeData(snapshot.val());
+      } else {
+        console.log("No data available");
+      }
+    }).catch((error) => {
+      console.error(error);
+    });
+  }
+
+  useEffect(() => {
+    getFirebase();
+  // eslint-disable-next-line
+  }, [])
+  
 
   return (
     <div className='bg-black text-white px-4'>
