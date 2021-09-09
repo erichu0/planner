@@ -8,7 +8,7 @@ const DateSelector = (sleepData) => {
         <div>
             <select className='temp time-input h-9'>
                 <option>Hello</option>
-                {Array.from({ length: sleepDataKeys.length }, (_, i) => <option>{sleepDataKeys[sleepDataKeys.length - 1]}</option>)}
+                {Array.from({ length: sleepDataKeys.length }, (_, i) => <option>{sleepDataKeys[sleepDataKeys.length - i]}</option>)}
             </select>
         </div>
     )
