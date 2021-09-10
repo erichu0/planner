@@ -7,8 +7,6 @@ import SleepChart from './SleepChart';
 
 import { DatabaseContext } from "../firebase";
 
-const useMountEffect = (f) => useEffect(f, [])
-
 const SleepTracker = () => {
   const [sleepData, setSleepData] = useState({});
   const [wakeData, setWakeData] = useState({});
@@ -44,7 +42,14 @@ const SleepTracker = () => {
     });
   }
 
-  useMountEffect(getFirebase);
+
+
+  useEffect(_ => {
+    getFirebase();
+
+  }
+
+  )
 
   return (
     <div className='bg-black text-white px-4'>
