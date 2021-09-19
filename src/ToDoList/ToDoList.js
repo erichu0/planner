@@ -43,7 +43,7 @@ const ToDoList = () => {
             if (snapshot.exists()) {
                 setDoneToDos(snapshot.val());
             } else {
-                console.log("No data available");
+                console.log("No Done Todos available");
             }
         }).catch((error) => {
             console.error(error);

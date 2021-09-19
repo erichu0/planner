@@ -1,11 +1,22 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import DateSelector from './DateSelector';
 
-const Input = ({ setSleepData, sleepData, wakeData, setWakeData, setFirebase }) => {
-    const [buttonStatus, setButtonStatus] = useState(true); //true = sleep, false = wake
+const Input = ({ setSleepData, sleepData, wakeData, setWakeData, setFirebase, buttonStatus, setButtonStatus }) => {
+
     const [typeStatus, setTypeStatus] = useState(true); //true = manual, false = auto
 
     let decimalTime;
+
+
+    const loaded = useRef(false);
+    useEffect(_ => {
+        if (loaded.current) {
+            setFirebase();
+        } else {
+            loaded.current = true;
+        }
+    }, [sleepData, wakeData, buttonStatus])
+
     const statusHandler = (e) => {
         e.preventDefault();
         setTypeStatus(!typeStatus);
@@ -14,33 +25,33 @@ const Input = ({ setSleepData, sleepData, wakeData, setWakeData, setFirebase }) 
     const autoHandler = (e) => {
         e.preventDefault();
 
+        console.log(buttonStatus)
+
         const date = new Date();
         decimalTime = date.getHours() + date.getMinutes() / 60 + date.getSeconds() / 60 / 60;
 
         // var dateKey = new Date('2014-04-03');
-        var dateKey = new Date();
 
         if (buttonStatus === true) {
             setSleepData({
                 ...sleepData,
-                [dateKey.toDateString()]: {
+                [date.toDateString()]: {
                     "time": decimalTime,
-                    "date": dateKey
+                    "date": date.toTimeString()
                 }
             });
             setButtonStatus(false);
+
         } else if (buttonStatus === false) {
             setWakeData({
                 ...wakeData,
-                [dateKey.toDateString()]: {
+                [date.toDateString()]: {
                     "time": decimalTime,
-                    "date": dateKey
+                    "date": date.toTimeString()
                 }
             });
             setButtonStatus(true);
         }
-
-        setFirebase();
     }
 
     const [hours, sethours] = useState(0);
